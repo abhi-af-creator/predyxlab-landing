@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PredyxLab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>PredyxLab</h1>
+    <p class="tagline">
+      A forecasting and analytics platform for scenario-based insights.
+    </p>
+
+    <div class="hero-actions">
+      <button id="launchBtn" class="primary">Launch App</button>
+      <button id="assistantBtn" class="secondary">Research Assistant</button>
+    </div>
+  </header>
+
+  <!-- Capabilities -->
+  <section class="features">
+    <div class="card">
+      <h3>Forecasting</h3>
+      <p>Predict future prices using historical market data.</p>
+    </div>
+    <div class="card">
+      <h3>Trend Analysis</h3>
+      <p>Identify momentum, patterns, and directional signals.</p>
+    </div>
+    <div class="card">
+      <h3>Scenario Insights</h3>
+      <p>Explore multiple outcomes instead of single-point predictions.</p>
+    </div>
+  </section>
+
+  <!-- Labs -->
+  <section class="labs">
+    <h2>Labs</h2>
+    <p>
+      Labs hosts experimental features and early research concepts that may
+      evolve into future platform capabilities.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      PredyxLab is built to study trends and forecasts using historical data.
+      This platform does not provide investment advice.
+    </p>
+    <span class="version">PredyxLab v1.0</span>
+  </footer>
+
+  <!-- Visitor Modal -->
+  <div id="visitorModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Before you continue</h3>
+      <p>Share your details to help us improve the platform.</p>
+
+      <input type="text" id="nameInput" placeholder="Name" />
+      <input type="email" id="emailInput" placeholder="Email" />
+
+      <div class="modal-actions">
+        <button id="continueBtn" class="primary">Continue</button>
+        <button id="skipBtn" class="secondary">Skip</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Assistant -->
+  <div id="assistantFloating" class="assistant-fab">🤖</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

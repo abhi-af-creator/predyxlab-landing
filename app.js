@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let hideTimeout = null;
 
   // ---------- CONFIG ----------
-  const APP_URL = "https://your-react-app-url";
+  const APP_URL = "https://orange-moss-08315ef00.2.azurestaticapps.net";
   const VISITOR_API =
     "https://predyxlab-api.blackglacier-cde78dbb.centralindia.azurecontainerapps.io/visitor-log";
 

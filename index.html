@@ -4,58 +4,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PredyxLab</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <header class="hero">
     <h1>PredyxLab</h1>
+
     <p class="tagline">
-      A forecasting and analytics platform for scenario-based insights.
+      A research-driven platform for forecasting <strong>NSE stock prices</strong>
+      using historical data, trends, and scenario modeling.
     </p>
 
-    <div class="hero-actions">
-      <button id="launchBtn" class="primary">Launch App</button>
-      <button id="assistantBtn" class="secondary">Research Assistant</button>
+    <div class="cta-buttons">
+      <button id="launchAppBtn" class="btn primary">Launch App</button>
+      <button id="assistantBtn" class="btn secondary">Research Assistant</button>
+      <button id="labsBtn" class="btn secondary">Labs</button>
     </div>
   </header>
 
-  <!-- Capabilities -->
+  <!-- FEATURES -->
   <section class="features">
-    <div class="card">
+    <div class="feature-card" data-feature="forecasting">
       <h3>Forecasting</h3>
       <p>Predict future prices using historical market data.</p>
     </div>
-    <div class="card">
+
+    <div class="feature-card" data-feature="trend-analysis">
       <h3>Trend Analysis</h3>
       <p>Identify momentum, patterns, and directional signals.</p>
     </div>
-    <div class="card">
+
+    <div class="feature-card" data-feature="scenario-insights">
       <h3>Scenario Insights</h3>
       <p>Explore multiple outcomes instead of single-point predictions.</p>
     </div>
   </section>
 
-  <!-- Labs -->
-  <section class="labs">
-    <h2>Labs</h2>
-    <p>
-      Labs hosts experimental features and early research concepts that may
-      evolve into future platform capabilities.
-    </p>
-  </section>
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>
       PredyxLab is built to study trends and forecasts using historical data.
       This platform does not provide investment advice.
     </p>
     <span class="version">PredyxLab v1.0</span>
+    <span class="market-note">Currently supports Indian equity markets (NSE)</span>
   </footer>
 
-  <!-- Visitor Modal -->
+  <!-- VISITOR MODAL -->
   <div id="visitorModal" class="modal hidden">
     <div class="modal-content">
       <h3>Before you continue</h3>
@@ -65,15 +69,25 @@
       <input type="email" id="emailInput" placeholder="Email" />
 
       <div class="modal-actions">
-        <button id="continueBtn" class="primary">Continue</button>
-        <button id="skipBtn" class="secondary">Skip</button>
+        <button id="continueBtn" class="btn primary">Continue</button>
+        <button id="skipBtn" class="btn secondary">Skip</button>
       </div>
     </div>
   </div>
 
-  <!-- Floating Assistant -->
+  <!-- FLOATING ASSISTANT -->
   <div id="assistantFloating" class="assistant-fab">🤖</div>
 
+  <!-- INSIGHT OVERLAY -->
+  <div id="insightOverlay" class="insight-overlay hidden-soft">
+    <div class="insight-box">
+      <div class="insight-title" id="insightTitle"></div>
+      <div class="insight-content" id="insightContent"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
   <script src="app.js"></script>
+
 </body>
 </html>

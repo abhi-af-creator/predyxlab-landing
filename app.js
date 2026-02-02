@@ -19,21 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const assistantFab = document.getElementById("assistantFloating");
   const authorNote = document.getElementById("authorNote");
 
-  let hideTimeout = null;
-  const isAnyTriggerHovered = () => {
-  return (
-    launchBtn?.matches(":hover") ||
-    assistantBtn?.matches(":hover") ||
-    labsBtn?.matches(":hover") ||
-    assistantFab?.matches(":hover") ||
-    authorNote?.matches(":hover") ||
-    [...document.querySelectorAll(".feature-card")].some(card =>
-      card.matches(":hover")
-    )
-  );
-};
-
-  let insightLocked = false; // ✅ NEW: hover lock
+  // ✅ CRITICAL FIX: overlay must NEVER capture mouse events
+  if (overlay) {
+    overlay.style.pointerEvents = "none";
+  }
 
   // ---------- CONFIG ----------
   const APP_URL = "https://orange-moss-08315ef00.2.azurestaticapps.net";
@@ -45,29 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- OVERLAY HELPERS ----------
   const showInsight = (title, content) => {
-    clearTimeout(hideTimeout);
-    insightLocked = true;
-
     overlayTitle.textContent = title;
     overlayContent.textContent = content;
     overlay.classList.remove("hidden-soft");
   };
 
   const hideInsight = () => {
-  clearTimeout(hideTimeout);
-
-  hideTimeout = setTimeout(() => {
-    // ✅ CRITICAL CHECK
-    if (!isAnyTriggerHovered()) {
-      overlay.classList.add("hidden-soft");
-    }
-  }, 120);
-};
-
-
-  const unlockInsight = () => {
-    insightLocked = false;
-    hideInsight();
+    overlay.classList.add("hidden-soft");
   };
 
   // ---------- LAUNCH APP (CLICK) ----------

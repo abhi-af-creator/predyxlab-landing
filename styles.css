@@ -195,18 +195,20 @@ footer {
 }
 
 .insight-title {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #60a5fa;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  text-align: center;
 }
 
 .insight-content {
   font-size: 0.95rem;
   line-height: 1.6;
   color: #e5e7eb;
+  text-align: justify;
 }
 
 /* ---------------- VISIBILITY HELPERS ---------------- */
@@ -217,4 +219,14 @@ footer {
 .hidden-soft {
   opacity: 0;
   pointer-events: none;
+}
+.author-link {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #60a5fa;
+  cursor: pointer;
+}
+.author-link:hover {
+  text-decoration: underline;
 }

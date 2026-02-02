@@ -12,12 +12,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlayTitle = document.getElementById("insightTitle");
   const overlayContent = document.getElementById("insightContent");
 
+  const labsModal = document.getElementById("labsModal");
+  const joinLabsBtn = document.getElementById("joinLabsBtn");
+  const closeLabsBtn = document.getElementById("closeLabsBtn");
+
+  const assistantFab = document.getElementById("assistantFloating");
+  const authorNote = document.getElementById("authorNote");
+
   let hideTimeout = null;
 
   // ---------- CONFIG ----------
   const APP_URL = "https://your-react-app-url";
   const VISITOR_API =
     "https://predyxlab-api.blackglacier-cde78dbb.centralindia.azurecontainerapps.io/visitor-log";
+
+  const assistantText =
+    "An upcoming AI research assistant that can ingest financial documents, analyze context, and answer questions with traceable insights. Planned for PredyxLab v2.0.";
 
   // ---------- OVERLAY HELPERS ----------
   const showInsight = (title, content) => {
@@ -34,62 +44,128 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ---------- LAUNCH APP (CLICK) ----------
-  launchBtn.addEventListener("click", () => {
-    if (sessionStorage.getItem("visitorLogged")) {
-      window.location.href = APP_URL;
-    } else {
-      modal.classList.remove("hidden"); // IMPORTANT
-    }
-  });
+  if (launchBtn && modal) {
+    launchBtn.addEventListener("click", () => {
+      if (sessionStorage.getItem("visitorLogged")) {
+        window.location.href = APP_URL;
+      } else {
+        modal.classList.remove("hidden");
+      }
+    });
+  }
 
   // ---------- MODAL ACTIONS ----------
-  continueBtn.addEventListener("click", async () => {
-    const name = document.getElementById("nameInput").value;
-    const email = document.getElementById("emailInput").value;
+  if (continueBtn) {
+    continueBtn.addEventListener("click", async () => {
+      const name = document.getElementById("nameInput")?.value || "";
+      const email = document.getElementById("emailInput")?.value || "";
 
-    try {
-      await fetch(VISITOR_API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email })
-      });
-    } catch {
-      console.warn("Visitor logging failed");
-    }
+      try {
+        await fetch(VISITOR_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email }),
+        });
+      } catch {
+        console.warn("Visitor logging failed");
+      }
 
-    sessionStorage.setItem("visitorLogged", "true");
-    window.location.href = APP_URL;
-  });
+      sessionStorage.setItem("visitorLogged", "true");
+      window.location.href = APP_URL;
+    });
+  }
 
-  skipBtn.addEventListener("click", () => {
-    sessionStorage.setItem("visitorLogged", "true");
-    window.location.href = APP_URL;
-  });
+  if (skipBtn) {
+    skipBtn.addEventListener("click", () => {
+      sessionStorage.setItem("visitorLogged", "true");
+      window.location.href = APP_URL;
+    });
+  }
 
   // ---------- BUTTON HOVERS ----------
-  launchBtn.addEventListener("mouseenter", () =>
-    showInsight(
-      "Launch PredyxLab",
-      "Enter the core application for NSE stock price forecasting, trend analysis, and scenario-based insights."
-    )
-  );
-  launchBtn.addEventListener("mouseleave", hideInsight);
+  if (launchBtn) {
+    launchBtn.addEventListener("mouseenter", () =>
+      showInsight(
+        "Launch PredyxLab",
+        "Enter the core application for NSE stock price forecasting, trend analysis, and scenario-based insights."
+      )
+    );
+    launchBtn.addEventListener("mouseleave", hideInsight);
+  }
 
-  assistantBtn.addEventListener("mouseenter", () =>
-    showInsight(
-      "Research Assistant",
-      "An upcoming AI assistant designed to analyze financial documents with traceable insights."
-    )
-  );
-  assistantBtn.addEventListener("mouseleave", hideInsight);
+  if (assistantBtn) {
+    assistantBtn.addEventListener("mouseenter", () =>
+      showInsight("Research Assistant", assistantText)
+    );
+    assistantBtn.addEventListener("mouseleave", hideInsight);
+  }
 
-  labsBtn.addEventListener("mouseenter", () =>
-    showInsight(
-      "Labs",
-      "Experimental models, early signals, and research ideas. Some evolve into core features."
-    )
-  );
-  labsBtn.addEventListener("mouseleave", hideInsight);
+  if (labsBtn) {
+    labsBtn.addEventListener("mouseenter", () =>
+      showInsight(
+        "Labs",
+        "Experimental models, early signals, and research ideas. Some evolve into core features."
+      )
+    );
+    labsBtn.addEventListener("mouseleave", hideInsight);
+
+    // ✅ CLICK → OPEN LABS MODAL (FIX)
+    labsBtn.addEventListener("click", () => {
+      if (labsModal) labsModal.classList.remove("hidden");
+    });
+  }
+
+  // ---------- LABS MODAL ----------
+  if (joinLabsBtn) {
+    joinLabsBtn.addEventListener("click", async () => {
+      const name = document.getElementById("labsNameInput")?.value || "";
+      const email = document.getElementById("labsEmailInput")?.value || "";
+
+      try {
+        await fetch(VISITOR_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            interest: "labs_beta",
+          }),
+        });
+      } catch {
+        console.warn("Labs beta signup failed");
+      }
+
+      labsModal.classList.add("hidden");
+    });
+  }
+
+  if (closeLabsBtn) {
+    closeLabsBtn.addEventListener("click", () => {
+      labsModal.classList.add("hidden");
+    });
+  }
+
+  // ---------- ASSISTANT FAB ----------
+  if (assistantFab) {
+    assistantFab.addEventListener("mouseenter", () =>
+      showInsight("Research Assistant", assistantText)
+    );
+    assistantFab.addEventListener("mouseleave", hideInsight);
+    assistantFab.addEventListener("click", () =>
+      showInsight("Research Assistant", assistantText)
+    );
+  }
+
+  // ---------- AUTHOR NOTE ----------
+  if (authorNote) {
+    authorNote.addEventListener("mouseenter", () =>
+      showInsight(
+        "From the Author",
+        "Hi, everyone. PredyxLab is a personal research project by T Abhilash, created out of a deep interest in understanding market behavior through data, models, and thoughtful experimentation.\n\nThe platform is designed as a learning space — to explore forecasts, identify trends, and reason through scenarios with clarity and discipline. It is an analytical tool, not a source of financial advice."
+      )
+    );
+    authorNote.addEventListener("mouseleave", hideInsight);
+  }
 
   // ---------- FEATURE CARDS ----------
   document.querySelectorAll(".feature-card").forEach((card) => {
@@ -98,22 +174,22 @@ document.addEventListener("DOMContentLoaded", () => {
     card.addEventListener("mouseenter", () => {
       if (type === "forecasting") {
         showInsight(
-          "Forecasting (NSE)",
-          "Probabilistic price range estimation using historical NSE data."
+          "Forecasting",
+          "PredyxLab analyzes historical NSE price behavior to estimate forward-looking price ranges. These forecasts are probabilistic in nature and intended to support analysis, not guarantee outcomes."
         );
       }
 
       if (type === "trend-analysis") {
         showInsight(
           "Trend Analysis",
-          "Momentum and directional signal analysis."
+          "Trend analysis focuses on identifying momentum, direction, and persistence in price movements. It helps separate meaningful structural shifts from short-term market noise."
         );
       }
 
       if (type === "scenario-insights") {
         showInsight(
           "Scenario Insights",
-          "Multiple possible market paths instead of single-point predictions."
+          "Scenario insights explore multiple possible future paths rather than a single prediction. This approach encourages contingency thinking and better decision preparation under uncertainty."
         );
       }
     });

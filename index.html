@@ -57,6 +57,8 @@
     </p>
     <span class="version">PredyxLab v1.0</span>
     <span class="market-note">Currently supports Indian equity markets (NSE)</span>
+    <span id="authorNote" class="author-link">Message from the author</span>
+
   </footer>
 
   <!-- VISITOR MODAL -->
@@ -74,6 +76,27 @@
       </div>
     </div>
   </div>
+  
+<!-- Labs Beta Modal -->
+<div id="labsModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Join PredyxLab Labs</h3>
+    <p>
+      Labs is where experimental features and early research ideas are explored.
+      Join our beta tester group for early access and updates.
+    </p>
+
+    <input type="text" id="labsNameInput" placeholder="Name" />
+    <input type="email" id="labsEmailInput" placeholder="Email" />
+
+    <div class="modal-actions">
+      <button id="joinLabsBtn" class="primary">Join Beta</button>
+      <button id="closeLabsBtn" class="secondary">Back</button>
+    </div>
+  </div>
+</div>
+
+
 
   <!-- FLOATING ASSISTANT -->
   <div id="assistantFloating" class="assistant-fab">🤖</div>

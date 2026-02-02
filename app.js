@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     authorNote.addEventListener("mouseenter", () =>
       showInsight(
         "From the Author",
-        "PredyxLab is a personal research project by T Abhilash, created out of a deep interest in understanding market behavior through data, models, and thoughtful experimentation.\n\nThe platform is designed as a learning space — to explore forecasts, identify trends, and reason through scenarios with clarity and discipline. It is an analytical tool, not a source of financial advice."
+        "PredyxLab is a personal research project by Abhilash, created out of a deep interest in understanding market behavior through data, models, and thoughtful experimentation.\n\nThe platform is designed as a learning space — to explore forecasts, identify trends, and reason through scenarios with clarity and discipline. It is an analytical tool, not a source of financial advice."
       )
     );
     authorNote.addEventListener("mouseleave", hideInsight);

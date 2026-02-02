@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const authorNote = document.getElementById("authorNote");
 
   let hideTimeout = null;
+  let insightLocked = false; // ✅ NEW: hover lock
 
   // ---------- CONFIG ----------
   const APP_URL = "https://orange-moss-08315ef00.2.azurestaticapps.net";
@@ -32,15 +33,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------- OVERLAY HELPERS ----------
   const showInsight = (title, content) => {
     clearTimeout(hideTimeout);
+    insightLocked = true;
+
     overlayTitle.textContent = title;
     overlayContent.textContent = content;
     overlay.classList.remove("hidden-soft");
   };
 
   const hideInsight = () => {
+    clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
-      overlay.classList.add("hidden-soft");
-    }, 120);
+      if (!insightLocked) {
+        overlay.classList.add("hidden-soft");
+      }
+    }, 180); // ✅ slightly higher delay = no flicker
+  };
+
+  const unlockInsight = () => {
+    insightLocked = false;
+    hideInsight();
   };
 
   // ---------- LAUNCH APP (CLICK) ----------
@@ -90,14 +101,14 @@ document.addEventListener("DOMContentLoaded", () => {
         "Enter the core application for NSE stock price forecasting, trend analysis, and scenario-based insights."
       )
     );
-    launchBtn.addEventListener("mouseleave", hideInsight);
+    launchBtn.addEventListener("mouseleave", unlockInsight);
   }
 
   if (assistantBtn) {
     assistantBtn.addEventListener("mouseenter", () =>
       showInsight("Research Assistant", assistantText)
     );
-    assistantBtn.addEventListener("mouseleave", hideInsight);
+    assistantBtn.addEventListener("mouseleave", unlockInsight);
   }
 
   if (labsBtn) {
@@ -107,9 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "Experimental models, early signals, and research ideas. Some evolve into core features."
       )
     );
-    labsBtn.addEventListener("mouseleave", hideInsight);
+    labsBtn.addEventListener("mouseleave", unlockInsight);
 
-    // ✅ CLICK → OPEN LABS MODAL (FIX)
     labsBtn.addEventListener("click", () => {
       if (labsModal) labsModal.classList.remove("hidden");
     });
@@ -125,11 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await fetch(VISITOR_API, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            email,
-            interest: "labs_beta",
-          }),
+          body: JSON.stringify({ name, email, interest: "labs_beta" }),
         });
       } catch {
         console.warn("Labs beta signup failed");
@@ -150,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     assistantFab.addEventListener("mouseenter", () =>
       showInsight("Research Assistant", assistantText)
     );
-    assistantFab.addEventListener("mouseleave", hideInsight);
+    assistantFab.addEventListener("mouseleave", unlockInsight);
     assistantFab.addEventListener("click", () =>
       showInsight("Research Assistant", assistantText)
     );
@@ -164,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Hi, everyone. PredyxLab is a personal research project by T Abhilash, created out of a deep interest in understanding market behavior through data, models, and thoughtful experimentation.\n\nThe platform is designed as a learning space — to explore forecasts, identify trends, and reason through scenarios with clarity and discipline. It is an analytical tool, not a source of financial advice."
       )
     );
-    authorNote.addEventListener("mouseleave", hideInsight);
+    authorNote.addEventListener("mouseleave", unlockInsight);
   }
 
   // ---------- FEATURE CARDS ----------
@@ -194,6 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    card.addEventListener("mouseleave", hideInsight);
+    card.addEventListener("mouseleave", unlockInsight);
   });
 });

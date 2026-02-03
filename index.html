@@ -17,6 +17,14 @@
 
   <!-- HERO -->
   <header class="hero">
+
+    <!-- LOGO (ADDED) -->
+    <img
+      src="./Predyxlab-logo.png"
+      alt="PredyxLab logo"
+      class="hero-logo"
+    />
+
     <h1>PredyxLab</h1>
 
     <p class="tagline">
@@ -30,6 +38,26 @@
       <button id="labsBtn" class="btn secondary">Labs</button>
     </div>
   </header>
+
+  <!-- DEMO PREVIEW (ADDED) -->
+  <section class="demo-section">
+    <h2>Live Prediction Demo</h2>
+
+    <p class="demo-description">
+      Historical price trends combined with a 7-day forecast selected via
+      automated model arbitration.
+    </p>
+
+    <img
+      src="./predyxlab-demo.png"
+      alt="PredyxLab demo showing historical price chart and prediction output"
+      class="demo-image"
+    />
+
+    <p class="demo-disclaimer">
+      Demo environment · Not investment advice
+    </p>
+  </section>
 
   <!-- FEATURES -->
   <section class="features">
@@ -58,7 +86,6 @@
     <span class="version">PredyxLab v1.0</span>
     <span class="market-note">Currently supports Indian equity markets (NSE)</span>
     <span id="authorNote" class="author-link">Message from the author</span>
-
   </footer>
 
   <!-- VISITOR MODAL -->
@@ -76,27 +103,25 @@
       </div>
     </div>
   </div>
-  
-<!-- Labs Beta Modal -->
-<div id="labsModal" class="modal hidden">
-  <div class="modal-content">
-    <h3>Join PredyxLab Labs</h3>
-    <p>
-      Labs is where experimental features and early research ideas are explored.
-      Join our beta tester group for early access and updates.
-    </p>
 
-    <input type="text" id="labsNameInput" placeholder="Name" />
-    <input type="email" id="labsEmailInput" placeholder="Email" />
+  <!-- Labs Beta Modal -->
+  <div id="labsModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Join PredyxLab Labs</h3>
+      <p>
+        Labs is where experimental features and early research ideas are explored.
+        Join our beta tester group for early access and updates.
+      </p>
 
-    <div class="modal-actions">
-      <button id="joinLabsBtn" class="primary">Join Beta</button>
-      <button id="closeLabsBtn" class="secondary">Back</button>
+      <input type="text" id="labsNameInput" placeholder="Name" />
+      <input type="email" id="labsEmailInput" placeholder="Email" />
+
+      <div class="modal-actions">
+        <button id="joinLabsBtn" class="primary">Join Beta</button>
+        <button id="closeLabsBtn" class="secondary">Back</button>
+      </div>
     </div>
   </div>
-</div>
-
-
 
   <!-- FLOATING ASSISTANT -->
   <div id="assistantFloating" class="assistant-fab">🤖</div>

@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const APP_URL = "https://orange-moss-08315ef00.2.azurestaticapps.net";
   const VISITOR_API =
     "https://predyxlab-api.blackglacier-cde78dbb.centralindia.azurecontainerapps.io/visitor-log";
+  
+  const RAG_URL = "https://black-grass-09ef5ab00.2.azurestaticapps.net";
 
   const assistantText =
     "An upcoming AI research assistant that can ingest financial documents, analyze context, and answer questions with traceable insights. Planned for PredyxLab v2.0.";
@@ -98,6 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
       showInsight("Research Assistant", assistantText)
     );
     assistantBtn.addEventListener("mouseleave", hideInsight);
+    assistantBtn.addEventListener("click", () => {
+    window.location.href = RAG_URL;
+  });
+
   }
 
   if (labsBtn) {
@@ -147,7 +153,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     assistantFab.addEventListener("mouseleave", hideInsight);
     assistantFab.addEventListener("click", () =>
-      showInsight("Research Assistant", assistantText)
+      {
+    window.location.href = RAG_URL;
+  }
     );
   }
 

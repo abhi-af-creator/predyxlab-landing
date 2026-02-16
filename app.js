@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const RAG_URL = "https://black-grass-09ef5ab00.2.azurestaticapps.net";
 
   const assistantText =
-    "An upcoming AI research assistant that can ingest financial documents, analyze context, and answer questions with traceable insights. Planned for PredyxLab v2.0.";
+    "PredyxLab AI Research Assistant – Turn financial documents into actionable insights. Upload reports, extract intelligence, and get accurate, traceable answers instantly."
 
   // ---------- OVERLAY HELPERS ----------
   const showInsight = (title, content) => {

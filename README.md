@@ -1,6 +1,7 @@
 
 # PredyxLab Landing Page
 [Live Demo/Official Site](https://calm-meadow-06bb15200.2.azurestaticapps.net/).
+Live application: https://calm-meadow-06bb15200.2.azurestaticapps.net/
 This repository hosts the public landing page for PredyxLab.
 Live application: https://calm-meadow-06bb15200.2.azurestaticapps.net/
 - Azure Static Web Apps
